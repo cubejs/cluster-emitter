@@ -1,0 +1,10 @@
+.idea
+temp
+node_modules
+reports
+target
+docs
+logs
+log
+coverage
+lib-cov
