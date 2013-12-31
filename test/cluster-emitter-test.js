@@ -37,6 +37,22 @@ describe('cluster-emitter', function(){
 			emitter.emit(event);//test emit
 		});
 
+		it('should return parent pid as null', function(done){
+
+			this.timeout(500);
+
+			var emitter = require('../index');
+
+			emitter.should.be.ok;
+
+			emitter.once('reply-parent-pid', function(parentPid){
+
+				//parentPid should be null
+				done(parentPid);
+			});
+
+			emitter.emit('ask-parent-pid', process.pid);
+		})
 	});
 
 	//now we'll need to verify the test in cluster mode, for master emitter the behavior should be:

@@ -238,6 +238,13 @@ if(cluster.isMaster){
             worker.on('message', worker.clusterEventHandler);
         }
     });
+
+    emitter.on('ask-parent-pid', function(childPid){
+        //just to tell the child the parent's pid, sends null if it's the parent itself asking
+        if(childPid){
+            emitter.to([childPid]).emit('reply-parent-pid', process.pid === childPid ? null : process.pid);
+        }
+    });
 }
 else{
     
