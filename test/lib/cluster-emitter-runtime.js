@@ -108,8 +108,8 @@ else{
 		emitter.once(eventToMe, function(){
 
 			logger.info('[worker:%d] received:%s and will emit:%s', process.pid, eventToMe, echo);
-			emitter.emit(echo, process.pid);
-			logger.info('[worker:%d] emitted:%s with payload:%s', process.pid, echo, process.pid);
+			emitter.emit(echo, process.pid, process.parentPid);
+			logger.info('[worker:%d] emitted:%s with payload:%s, %s', process.pid, echo, process.pid, process.parentPid);
 		});
 
 		emitter.to(['self']).emit(eventToMe);
